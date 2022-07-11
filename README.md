@@ -62,3 +62,6 @@ You are expected to implement only the following use-cases:
 
 ### 7-Product List With Record 
 <img width="1512" alt="7-Product List With Record" src="https://user-images.githubusercontent.com/7867129/178320258-1b7201eb-eacd-4b1c-a43a-2e02b9a396e3.png">
+
+### Class Diagram
+![Class Diagram - Supplier Relationship Management (SRM) system ](https://user-images.githubusercontent.com/7867129/178322454-106497ee-51fa-4a03-9d78-32c682c5691e.png)
