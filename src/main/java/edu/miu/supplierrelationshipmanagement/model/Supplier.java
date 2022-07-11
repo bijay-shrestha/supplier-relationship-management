@@ -32,6 +32,6 @@ public class Supplier implements Serializable {
     private String name;
     private String contactPhoneNumber;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "supplier")
+    @OneToMany(mappedBy = "supplier")
     private Collection<Product> products = new ArrayList<>();
 }
