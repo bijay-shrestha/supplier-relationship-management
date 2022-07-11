@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Supplier Relationship Management - Supplier</title>
+    <style>
+        table {
+            border: 1px solid;
+            border-collapse: collapse;
+        }
+        table th, table td {
+            border: 1px solid;
+            padding: 1em;
+        }
+    </style>
+</head>
+<body>
+<header th:replace="fragments/header :: header"></header>
+<main>
+    <h1>List of All Suppliers</h1>
+    <div>
+        <p><a href="/srm/supplier/new">Add New Supplier</a></p>
+    </div>
+    <div th:if="${size == 0}">
+        <p>No Suppliers record found.</p>
+    </div>
+    <table>
+        <thead  th:if="${size > 0}">
+        <tr>
+            <th>#</th>
+            <th>Supplier Number</th>
+            <th>Name</th>
+            <th>Contact Phone Number</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${size > 0}" th:each="supplier, counter : ${suppliers}">
+            <th th:text="${counter.count}+${'.'}"></th>
+            <td th:text="${supplier.supplierNumber}"></td>
+            <td th:text="${supplier.name}"></td>
+            <td th:text="${supplier.contactPhoneNumber}"></td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Supplier Relationship Management - New Supplier</title>
+    <style>
+        a.std-lnk-btn {
+            text-decoration:none;color: #000000;border: 1px solid #000000;padding: 0.20em;background-color: #efefef;
+        }
+        input.std-btn {
+            color: #000000;border: 1px solid #000000;padding: 0.35em;background-color: #efefef;
+        }
+    </style>
+</head>
+<body>
+<header th:replace="fragments/header :: header"></header>
+<main>
+    <h1>New Supplier Form</h1>
+    <div style="border: 1px solid;padding: 1em;">
+        <div>
+            Fields marked with asterisk (*) are required.
+        </div>
+        <form method="post" action="/srm/supplier/new" th:object="${sup}">
+            <fieldset>
+                <div>
+                    <label>Supplier Number*</label>
+                </div>
+                <div>
+                    <div><span th:if="${#fields.hasErrors('supplierNumber')}" th:errors="*{supplierNumber}" style="color:red;"></span></div>
+                    <input name="supplierNumber" type="text" th:value="${sup.supplierNumber}" autofocus>
+                </div>
+                <div>
+                    <label>Name</label>
+                </div>
+                <div>
+                    <div><span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red;"></span></div>
+                    <input name="name" type="text" th:value="${sup.name}" autofocus>
+                </div>
+                <div>
+                    <label>Contact Phone Number</label>
+                </div>
+                <div>
+                    <div><span th:if="${#fields.hasErrors('contactPhoneNumber')}" th:errors="*{contactPhoneNumber}" style="color:red;"></span></div>
+                    <input name="contactPhoneNumber" type="text" th:value="${sup.contactPhoneNumber}" autofocus>
+                </div>
+            </fieldset>
+            <div style="margin-top: 1em;">
+                <a class="std-lnk-btn" href="/srm/supplier/list">Cancel</a>
+                <input class="std-btn" type="reset" value="Reset">
+                <input class="std-btn" type="submit" value="Add Supplier">
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>

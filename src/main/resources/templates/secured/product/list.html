@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Supplier Relationship Management - Product</title>
+    <style>
+        table {
+            border: 1px solid;
+            border-collapse: collapse;
+        }
+        table th, table td {
+            border: 1px solid;
+            padding: 1em;
+        }
+    </style>
+</head>
+<body>
+<header th:replace="fragments/header :: header"></header>
+<main>
+    <h1>List of All Products</h1>
+    <div>
+        <p><a href="/srm/product/new">Add New Product</a></p>
+    </div>
+    <div th:if="${size == 0}">
+        <p>No Product record found.</p>
+    </div>
+    <table>
+        <thead  th:if="${size > 0}">
+        <tr>
+            <th>#</th>
+            <th>Product Number</th>
+            <th>Name</th>
+            <th>Unit Price</th>
+            <th>Quantity In Stock</th>
+            <th>Supplier</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${size > 0}" th:each="product, counter : ${products}">
+            <th th:text="${counter.count}+${'.'}"></th>
+            <td th:text="${product.productNumber}"></td>
+            <td th:text="${product.name}"></td>
+            <td th:text="${product.unitPrice}"></td>
+            <td th:text="${product.quantityInStock}"></td>
+            <td th:text="${product.supplier.name}"></td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

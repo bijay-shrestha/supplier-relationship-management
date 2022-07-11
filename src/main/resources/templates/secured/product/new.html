@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Supplier Relationship Management - New Product</title>
+    <style>
+        a.std-lnk-btn {
+            text-decoration:none;color: #000000;border: 1px solid #000000;padding: 0.20em;background-color: #efefef;
+        }
+        input.std-btn {
+            color: #000000;border: 1px solid #000000;padding: 0.35em;background-color: #efefef;
+        }
+    </style>
+</head>
+<body>
+<header th:replace="fragments/header :: header"></header>
+<main>
+    <h1>New Product Form</h1>
+    <div style="border: 1px solid;padding: 1em;">
+        <div>
+            Fields marked with asterisk (*) are required.
+        </div>
+        <form method="post" action="/srm/product/new" th:object="${product}">
+            <fieldset>
+                <div>
+                    <label>Product Number*</label>
+                </div>
+                <div>
+                    <div><span th:if="${#fields.hasErrors('productNumber')}" th:errors="*{productNumber}" style="color:red;"></span></div>
+                    <input name="productNumber" type="text" th:value="${product.productNumber}" autofocus>
+                </div>
+                <div>
+                    <label>Name</label>
+                </div>
+                <div>
+                    <div><span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red;"></span></div>
+                    <input name="name" type="text" th:value="${product.name}" autofocus>
+                </div>
+                <div>
+                    <label>Unit Price</label>
+                </div>
+                <div>
+                    <div><span th:if="${#fields.hasErrors('unitPrice')}" th:errors="*{unitPrice}" style="color:red;"></span></div>
+                    <input name="unitPrice" type="text" th:value="${product.unitPrice}" autofocus>
+                </div>
+                <div>
+                    <label>Quantity In Stock</label>
+                </div>
+                <div>
+                    <div><span th:if="${#fields.hasErrors('quantityInStock')}" th:errors="*{quantityInStock}" style="color:red;"></span></div>
+                    <input name="quantityInStock" type="text" th:value="${product.quantityInStock}" autofocus>
+                </div>
+                <div>
+                <label for="supplier">Supplier:</label>
+                </div>
+                <select required="required"
+                         th:value="${product.supplier}" name="supplier" id="supplier">
+                    <option disabled="disabled" selected="selected" > --
+                        Select Supplier --
+                    </option>
+                    <option th:each="supplier : ${suppliers}" th:value="${supplier.supplierId}"
+                            th:text="${supplier.name}" >
+                    </option>
+                </select>
+            </fieldset>
+            <div style="margin-top: 1em;">
+                <a class="std-lnk-btn" href="/srm/product/list">Cancel</a>
+                <input class="std-btn" type="reset" value="Reset">
+                <input class="std-btn" type="submit" value="Add Product">
+            </div>
+        </form>
+    </div>
+</main>
+</body>
+</html>
